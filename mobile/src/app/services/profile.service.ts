@@ -21,4 +21,32 @@ export class ProfileService {
   getMyPlaylists(): Observable<any> {
     return this.http.get(`${API_URL}/profile/playlists`);
   }
+
+  playCurrentSong(): Observable<any> {
+    return this.http.put(`${API_URL}/profile/listening/play`, null);
+  }
+
+  pauseCurrentSong(): Observable<any> {
+    return this.http.put(`${API_URL}/profile/listening/pause`, null);
+  }
+
+  backCurrentSong(): Observable<any> {
+    return this.http.put(`${API_URL}/profile/listening/back`, null);
+  }
+
+  forwardCurrentSong(): Observable<any> {
+    return this.http.put(`${API_URL}/profile/listening/forward`, null);
+  }
+
+  addPlaylist(pl: string): Observable<any> {
+    return this.http.post(`${API_URL}/profile/playlist/` + pl, null);
+  }
+
+  getPlaylistInfo(id: string): Observable<any>{
+    return this.http.get(`${API_URL}/profile/playlists/${id}`);
+  }
+
+  getPlaylistTracks(id: string): Observable<any>{
+    return this.http.get(`${API_URL}/profile/playlist/${id}/tracks`);
+  }
 }

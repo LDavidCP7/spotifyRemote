@@ -80,4 +80,79 @@ module.exports = (app) => {
      *         description: Playlist object
      */
     app.post('/profile/playlist/:name', c(controller.addPlaylist, (req, res, next) => [req.params.name]));
+
+    /**
+     * @swagger
+     * /profile/play:
+     *   put:
+     *     tags:
+     *       - play
+     *     description: Play the current song
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Playlist object
+     */
+    app.put('/profile/listening/play', c(controller.play));
+
+    /**
+     * @swagger
+     * /profile/pause:
+     *   put:
+     *     tags:
+     *       - profile
+     *     description: Pause the current song
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Playlist object
+     */
+    app.put('/profile/listening/pause', c(controller.pause));
+
+    /**
+     * @swagger
+     * /profile/back:
+     *   put:
+     *     tags:
+     *       - profile
+     *     description: Skip to the previous song
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Playlist object
+     */
+    app.put('/profile/listening/back', c(controller.back));
+
+    /**
+     * @swagger
+     * /profile/forward:
+     *   put:
+     *     tags:
+     *       - profile
+     *     description: Skip to the next song
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Playlist object
+     */
+    app.put('/profile/listening/forward', c(controller.forward));
+
+       /**
+     * @swagger
+     * /profile/playlist/:playlistId:
+     *   get:
+     *     tags:
+     *       - profile
+     *     description: Returns playlist info
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Tracks object
+     */
+    app.get('/profile/playlists/:playlistId', c(controller.playlistInfo, (req, res, next) => [req.params.playlistId]));
 };

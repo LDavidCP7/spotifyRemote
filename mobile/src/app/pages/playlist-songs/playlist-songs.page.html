@@ -3,10 +3,27 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>title</ion-title>
+    <ion-title>{{playlistname}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
-
+  <div text-center *ngIf="loading">
+    <ion-row align-items-center>
+      <ion-col align-self-center>
+        <ion-spinner name="circles" color="success"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-grid *ngIf="tracks">
+    <ion-row>
+      <ion-col *ngFor="let track of tracks" size="4">
+        <ion-label>
+          <img
+            [src]="track.track.album.images.length > 0? track.track.album.images[0].url: 'https://dummyimage.com/100x100/078f12/fff&text='+track.name.toUpperCase().split('')[0]"
+            width="100%"><br><b>{{track.track.name}}</b><br><i>{{track.track.album.artists[0].name}}</i>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
